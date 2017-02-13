@@ -1,0 +1,1725 @@
+/*
+* @Author: Iris Hu
+* @Date:   2017-01-03 15:43:12
+* @Last Modified by:   Iris Hu
+* @Last Modified time: 2017-01-17 10:11:43
+*/
+
+var _globe = function(div){
+
+	
+  var urls = {
+    earth: {
+      ccm:'images/world_ccm.jpg',
+      er:'images/world_er.jpg',
+      china1:'images/china1.jpg',
+      china2:'images/china2.jpg'
+    },
+    choose:'ccm'
+    // bump:'images/bump.jpg',
+    // specular:'images/specular.jpg'
+  }
+  var globe = null;
+
+  function init(){
+    // create a globe
+    globe = new Globe(div, urls);
+
+    // start it
+    globe.init();
+
+    // addBlock();
+  }
+
+
+  function move(){
+    globe.center({size:10,lat:20,lon:82});
+    setTimeout(function(){
+      globe.zoomTo(550);
+      // addBlock();
+          
+      // setTimeout(function(){
+      //   addBlock();
+      // },800);
+          
+    },1000);
+  }
+  
+
+  function addBlock(){
+    var datas = _BOTNETDATA;
+
+    datas.map(function(d){
+
+      drawBlock(d);
+    });
+  }
+
+  function drawBlock(data){
+
+    // 默认柱状大小为10
+    if (!data.size) 
+      data.size = 4 ;
+
+    // if (data.num){
+    //   if (data.num > 0 && data.num <= 500) 
+    //     data.color = '#234567';
+    //   if (data.num > 500 && data.num <= 1000)
+    //     data.color = '#cccccc';
+    // }
+    // 
+    if (data.type === 'ccm') 
+      data.color = '#b40091';
+    else if (data.type === 'ER') {
+      data.color = '#0078d7';
+      data.lon += 0.9;
+    }
+
+    globe.addLevitatingBlock(data);
+    // globe.addBlock(data);
+  }
+
+  function changeGlobeMap(name){
+
+    globe.changeGlobeMap(name);
+
+    if (name.indexOf('china') >= 0 ) {
+
+      globe.center({size:10,lat:20,lon:82});
+    }
+  }
+
+  init();
+
+  var api = {
+    move:move,
+    changeMap:changeGlobeMap
+  };
+
+  return api;
+};
+
+var _BOTNETDATA = [
+{
+  num:49.3,     //数据值 
+  lat:45.1,     //国家的纬度
+  lon:100.1,    //国家的经度
+  type:'ER',    //数据的类型，ER或CCM
+  country:'Mongolia'  //国家名称
+},
+{
+  num:59.9,
+  lat:45.1,
+  lon:100.1,
+  type:'ccm',
+  country:'Mongolia'
+},
+{
+  num:79.2,
+  lat:20,
+  lon:30,
+  type:'ccm',
+  country:'Libya'
+},
+{
+  num:48.1,      
+  lat:16.8, 
+  lon:96.1,
+  type:'ER',
+  country:'Myanmar'
+},
+{
+  num:60.2,
+  lat:29, 
+  lon:44.3,
+  type:'ccm',
+  country:'Iraq'
+},
+{
+  num:36.9,      
+  lat:29, 
+  lon:44.3,
+  type:'ER',
+  country:'Iraq'
+},
+{
+  num:45.7,      
+  lat:21,
+  lon:105.5,
+  type:'ER',
+  country:'Vietnam'
+},
+{
+  num:27.3,
+  lat:21,
+  lon:105.5,
+  type:'ccm',
+  country:'Vietnam'
+},
+{
+  num:45.4,      
+  lat:30.3,
+  lon:69.3,
+  type:'ER',
+  country:'Pakistan'
+},
+{
+  num:42.1,
+  lat:30.3,
+  lon:69.3,
+  type:'ccm',
+  country:'Pakistan'
+},
+{
+  num:59.5,
+  lat:31.9,
+  lon:35.2,
+  type:'ccm',
+  country:'Palestinian Authority'
+},
+{
+  num:42.4,      
+  lat:31.9, 
+  lon:35.2,
+  type:'ER',
+  country:'Palestinian Authority'
+},
+{
+  num:45.2,      
+  lat:-0.7, 
+  lon:113.9,
+  type:'ER',
+  country:'Indonesia'
+},
+{
+  num:37,
+  lat:-0.7, 
+  lon:113.9,
+  type:'ccm',
+  country:'Indonesia'
+},
+{
+  num:52.7,
+  lat:31.7,
+  lon:-7.09,
+  type:'ccm',
+  country:'Morocco'
+},
+{
+  num:34.9,
+  lat:31.7,
+  lon:-7.09,
+  type:'ER',
+  country:'Morocco'
+},
+{
+  num:52.5,
+  lat:36.42,
+  lon:3.13,
+  type:'ccm',
+  country:'Algeria'
+},
+{
+  num:39.1,
+  lat:36.42,
+  lon:3.13,
+  type:'ER',
+  country:'Algeria'
+},
+{
+  num:41.1,      
+  lat:22.2, 
+  lon:91.4,
+  type:'ER',
+  country:'Bangladesh'
+},
+{
+  num:46.4,
+  lat:23.3,
+  lon:58.3,
+  type:'ccm',
+  country:'Oman'
+},
+{
+  num:41.1,      
+  lat:27.4, 
+  lon:85.1,
+  type:'ER',
+  country:'Nepal'
+},
+{
+  num:40.7,      
+  lat:27.4, 
+  lon:85.2,
+  type:'ccm',
+  country:'Nepal'
+},
+{
+  num:43.4,
+  lat:25.5,
+  lon:30.5,
+  type:'ccm',
+  country:'Egypt'
+},
+{
+  num:37.3,
+  lat:25.5,
+  lon:30.5,
+  type:'ER',
+  country:'Egypt'
+},
+{
+  num:43,      
+  lat:-12.3,
+  lon:18.3,
+  type:'ccm',
+  country:'Angola'
+},
+{
+  num:36.6,      
+  lat:-12.3,
+  lon:18.3,
+  type:'ER',
+  country:'Angola'
+},
+{
+  num:39.1,      
+  lat:11.3,
+  lon:104.5,
+  type:'ER',
+  country:'Cambodia'
+},
+{
+  num:25.4,      
+  lat:11.3,
+  lon:104.5,
+  type:'ccm',
+  country:'Cambodia'
+},
+{
+  num:42.9,
+  lat:31,
+  lon:36.5,
+  type:'ccm',
+  country:'Jordan'
+},
+{
+  num:35.8,
+  lat:31,
+  lon:36.5,
+  type:'ER',
+  country:'Jordan'
+},
+{
+  num:38.0,      
+  lat:-5.5,
+  lon:35.5,
+  type:'ER',
+  country:'Tanzania'
+},
+{
+  num:34.8,
+  lat:-5.5,
+  lon:35.5,
+  type:'ccm',
+  country:'Tanzania'
+},
+{
+  num:37.2,      
+  lat:14.3, 
+  lon:-17.2,
+  type:'ER',
+  country:'Senegal'
+},
+{
+  num:27.1,
+  lat:14.3, 
+  lon:-17.2,
+  type:'ccm',
+  country:'Senegal'
+},
+{
+  num:38.8,
+  lat:3.5,
+  lon:11.3,
+  type:'ccm',
+  country:'Cameroon'
+},
+
+{
+  num:37.8,
+  lat:36.5,
+  lon:10.1,
+  type:'ccm',
+  country:'Tunisia'
+},
+{
+  num:36.4,      
+  lat:36.5, 
+  lon:10.1,
+  type:'ER',
+  country:'Tunisia'
+},
+{
+  num:36.1,      
+  lat:40.1, 
+  lon:44.3,
+  type:'ER',
+  country:'Armenia'
+},
+{
+  num:10.8,
+  lat:40.1,
+  lon:44.3,
+  type:'ccm',
+  country:'Armenia'
+},
+{
+  num:34.8,
+  lat:33.53, 
+  lon:35.3,
+  type:'ccm',
+  country:'Lebanon'
+},
+{
+  num:29.4,      
+  lat:33.53, 
+  lon:35.3,
+  type:'ER',
+  country:'Lebanon'
+},
+{
+  num:34.7,
+  lat:14.4,
+  lon:121,
+  type:'ccm',
+  country:'Philippines'
+},
+{
+  num:35.6,      
+  lat:14.4, 
+  lon:121,
+  type:'ER',
+  country:'Philippines'
+},
+{
+  num:34.5,
+  lat:41.1, 
+  lon:19.4,
+  type:'ccm',
+  country:'Albania'
+},
+{
+  num:35.3,      
+  lat:41.1, 
+  lon:19.4,
+  type:'ER',
+  country:'Albania'
+},
+{
+  num:33.5,
+  lat:-25.5,
+  lon:32.3,
+  type:'ccm',
+  country:'Mozambique'
+},
+{
+  num:32.9,
+  lat:6.4,
+  lon:-5.1,
+  type:'ccm',
+  country:'Côte d\'Ivoire'
+},
+{
+  num:33.8,      
+  lat:6.4,
+  lon:-5.1,
+  type:'ER',
+  country:'Côte d\'Ivoire'
+},
+{
+  num:34.9,      
+  lat:51.1, 
+  lon:71.3,
+  type:'ER',
+  country:'Kazakhstan'
+},
+{
+  num:10.9,
+  lat:51.1,
+  lon:71.3,
+  type:'ccm',
+  country:'Kazakhstan'
+},
+{
+  num:32.3,
+  lat:26.1,
+  lon:50.3,
+  type:'ccm',
+  country:'Bahrain'
+},
+{
+  num:31.7,
+  lat:5.35,
+  lon:-0.06,
+  type:'ccm',
+  country:'Ghana'
+},
+{
+  num:33.8,      
+  lat:5.35,
+  lon:-0.06,
+  type:'ER',
+  country:'Ghana'
+},
+{
+  num:34.9,      
+  lat:13.4, 
+  lon:100.3,
+  type:'ER',
+  country:'Thailand'
+},
+{
+  num:27.6,
+  lat:13.4,
+  lon:100.3,
+  type:'ccm',
+  country:'Thailand'
+},
+{
+  num:30.0,
+  lat:24.4,
+  lon:46.4,
+  type:'ccm',
+  country:'Saudi Arabia'
+},
+{
+  num:28.6,      
+  lat:24.4, 
+  lon:46.4,
+  type:'ER',
+  country:'Saudi Arabia'
+},
+{
+  num:29.9,
+  lat:-17.4,
+  lon:31.02,
+  type:'ccm',
+  country:'Zimbabwe'
+},
+{
+  num:33.8,      
+  lat:40.2, 
+  lon:49.5,
+  type:'ER',
+  country:'Azerbaijan'
+},
+{
+  num:24.4,
+  lat:40.2,
+  lon:49.5,
+  type:'ccm',
+  country:'Azerbaijan'
+},
+{
+  num:29.4,
+  lat:9.05,
+  lon:7.32,
+  type:'ccm',
+  country:'Nigeria'
+},
+{
+  num:28.7,      
+  lat:9.05, 
+  lon:7.32,
+  type:'ER',
+  country:'Nigeria'
+},
+{
+  num:29.1,
+  lat:-15.2,
+  lon:28.1,
+  type:'ccm',
+  country:'Zambia'
+},
+{
+  num:32.8,      
+  lat:53.5, 
+  lon:27.3,
+  type:'ER',
+  country:'Belarus'
+},
+{
+  num:6.4,
+  lat:53.5,
+  lon:27.3,
+  type:'ccm',
+  country:'Belarus'
+},
+{
+  num:28.6,
+  lat:28.3, 
+  lon:78.1,
+  type:'ccm',
+  country:'India'
+},
+{
+  num:32.6,      
+  lat:28.3, 
+  lon:78.1,
+  type:'ER',
+  country:'India'
+},
+{
+  num:27.9,
+  lat:-16.2,
+  lon:-68.1,
+  type:'ccm',
+  country:'Bolivia'
+},
+{
+  num:26.6,      
+  lat:-16.2,
+  lon:-68.1,
+  type:'ER',
+  country:'Bolivia'
+},
+{
+  num:31.7,      
+  lat:50.3, 
+  lon:30.2,
+  type:'ER',
+  country:'Ukraine'
+},
+{
+  num:5.9,
+  lat:50.3,
+  lon:30.2,
+  type:'ccm',
+  country:'Ukraine'
+},
+{
+  num:31.4,      
+  lat:39.5, 
+  lon:32.5,
+  type:'ER',
+  country:'Turkey'
+},
+{
+  num:24.4,
+  lat:39.5,
+  lon:32.5,
+  type:'ccm',
+  country:'Turkey'
+},
+{
+  num:30.1,      
+  lat:47, 
+  lon:28.5,
+  type:'ER',
+  country:'Moldova'
+},
+{
+  num:9.2,
+  lat:47,
+  lon:28.5,
+  type:'ccm',
+  country:'Moldova'
+},
+{
+  num:29.9,      
+  lat:41.4, 
+  lon:44.5,
+  type:'ER',
+  country:'Georgia'
+},
+{
+  num:15.1,
+  lat:41.4,
+  lon:44.5,
+  type:'ccm',
+  country:'Georgia'
+},
+{
+  num:26.6,
+  lat:18.3,
+  lon:-69.5,
+  type:'ccm',
+  country:'Dominican Republic'
+},
+{
+  num:27.2,      
+  lat:18.3,
+  lon:-69.5,
+  type:'ER',
+  country:'Dominican Repunlic'
+},
+{
+  num:29.9,      
+  lat:-1.1,
+  lon:36.4,
+  type:'ER',
+  country:'Kenya'
+},
+{
+  num:25.3,
+  lat:-1.1,
+  lon:36.4,
+  type:'ccm',
+  country:'Kenya'
+},
+{
+  num:26.6,
+  lat:23.4,
+  lon:90.2,
+  type:'ccm',
+  country:'Banladesh'
+},
+{
+  num:29.4,      
+  lat:-15.4, 
+  lon:-47.5,
+  type:'ER',
+  country:'Brazil'
+},
+{
+  num:15.3,
+  lat:-15.4, 
+  lon:-47.5,
+  type:'ccm',
+  country:'Brazil'
+},
+{
+  num:25.6,
+  lat:10.3,
+  lon:-66.5,
+  type:'ccm',
+  country:'Venezuela'
+},
+{
+  num:28.0,      
+  lat:10.3,
+  lon:-66.5,
+  type:'ER',
+  country:'Venezuela'
+},
+{
+  num:28.8,      
+  lat:6.9, 
+  lon:79.8,
+  type:'ER',
+  country:'Sri Lanka'
+},
+{
+  num:22.7,
+  lat:6.9, 
+  lon:79.8,
+  type:'ccm',
+  country:'Sri Lanka'
+},
+
+{
+  num:24.8,
+  lat:24.2,
+  lon:54.2,
+  type:'ccm',
+  country:'United Arab Emirates'
+},
+{
+  num:27.4,      
+  lat:24.2, 
+  lon:54.2,
+  type:'ER',
+  country:'United Arab Emirates'
+},
+{
+  num:27.8,      
+  lat:25.1, 
+  lon:51.3,
+  type:'ER',
+  country:'Qatar'
+},
+{
+  num:22.3,
+  lat:25.1,
+  lon:51.3,
+  type:'ccm',
+  country:'Qatar'
+},
+{
+  num:24.2,
+  lat:14.05,
+  lon:-87.1,
+  type:'ccm',
+  country:'Honduras'
+},
+{
+  num:23.5,      
+  lat:14.05,
+  lon:-87.1,
+  type:'ER',
+  country:'Honduras'
+},
+{
+  num:27.6,      
+  lat:3.09, 
+  lon:101.4,
+  type:'ER',
+  country:'Malaysia'
+},
+{
+  num:21.9,
+  lat:3.09,
+  lon:101.4,
+  type:'ccm',
+  country:'Malaysia'
+},
+
+{
+  num:23.4,
+  lat:-12,
+  lon:-77,
+  type:'ccm',
+  country:'Peru'
+},
+{
+  num:25.9,      
+  lat:-12,
+  lon:-77,
+  type:'ER',
+  country:'Peru'
+},
+{
+  num:27.5,      
+  lat:41.3, 
+  lon:21.3,
+  type:'ER',
+  country:'Macedonia, FYRO'
+},
+{
+  num:20.4,
+  lat:41.3,
+  lon:21.3,
+  type:'ccm',
+  country:'Macedonia,FYRO'
+},
+{
+  num:21.8,
+  lat:43.5,
+  lon:18.2,
+  type:'ccm',
+  country:'Bosnia and Herzegovina'
+},
+{
+  num:26.3,      
+  lat:43.5, 
+  lon:18.2,
+  type:'ER',
+  country:'Bosnia and Herzegovina'
+},
+{
+  num:20.9,
+  lat:14.4,
+  lon:-90.2,
+  type:'ccm',
+  country:'Guatemala'
+},
+{
+  num:21.4,      
+  lat:14.4,
+  lon:-90.2,
+  type:'ER',
+  country:'Guatemala'
+},
+{
+  num:26.2,      
+  lat:29.3, 
+  lon:48,
+  type:'ER',
+  country:'Kuwait'
+},
+{
+  num:26.6,
+  lat:29.3,
+  lon:48,
+  type:'ccm',
+  country:'Kuwait'
+},
+{
+  num:19.7,
+  lat:22.3,
+  lon:17,
+  type:'ccm',
+  country:'Namibia'
+},
+{
+  num:25.6,      
+  lat:44.4, 
+  lon:20.3,
+  type:'ER',
+  country:'Serbia'
+},
+{
+  num:16.3,
+  lat:44.4,
+  lon:20.3,
+  type:'ccm',
+  country:'Serbia'
+},
+{
+  num:18.9,
+  lat:-20.1,
+  lon:57.3,
+  type:'ccm',
+  country:'Mauritius'
+},
+{
+  num:24.9,      
+  lat:30.4, 
+  lon:35.1,
+  type:'ER',
+  country:'Israel'
+},
+{
+  num:11.3,
+  lat:30.4,
+  lon:35.1,
+  type:'ccm',
+  country:'Israel'
+},
+{
+  num:18.5,
+  lat:19.2,
+  lon:-99.1,
+  type:'ccm',
+  country:'Mexico'
+},
+{
+  num:23.8,      
+  lat:19.2, 
+  lon:-99.1,
+  type:'ER',
+  country:'Mexico'
+},
+{
+  num:24.9,      
+  lat:55.4, 
+  lon:37.3,
+  type:'ER',
+  country:'Russia'
+},
+{
+  num:5.0,
+  lat:55.4,
+  lon:37.3,
+  type:'ccm',
+  country:'Russia'
+},
+{
+  num:18.1,
+  lat:13.4, 
+  lon:-89.1,
+  type:'ccm',
+  country:'El Salvador'
+},
+{
+  num:20.9,      
+  lat:13.4, 
+  lon:-89.1,
+  type:'ER',
+  country:'El Salvador'
+},
+{
+  num:24.4,      
+  lat:44.2, 
+  lon:26.1,
+  type:'ER',
+  country:'Romania'
+},
+{
+  num:14.4,
+  lat:44.2,
+  lon:26.1,
+  type:'ccm',
+  country:'Romania'
+},
+{
+  num:18.0,
+  lat:-0.15, 
+  lon:-78.3,
+  type:'ccm',
+  country:'Ecuador'
+},
+{
+  num:23.2,      
+  lat:-0.15, 
+  lon:-78.3,
+  type:'ER',
+  country:'Ecuador'
+},
+{
+  num:24.2,      
+  lat:42.45, 
+  lon:23.2,
+  type:'ER',
+  country:'Bulgaria'
+},
+{
+  num:12.1,
+  lat:42.45,
+  lon:23.2,
+  type:'ccm',
+  country:'Bulgaria'
+},
+{
+  num:17.8,
+  lat:18,
+  lon:-76.5,
+  type:'ccm',
+  country:'Jamaica'
+},
+{
+  num:24.2,      
+  lat:18,
+  lon:-76.5,
+  type:'ER',
+  country:'Jamaica'
+},
+{
+  num:17.2,
+  lat:-25.1, 
+  lon:-57.3,
+  type:'ccm',
+  country:'Paraguay'
+},
+{
+  num:22.6,      
+  lat:-25.1, 
+  lon:-57.3,
+  type:'ER',
+  country:'Paraguay'
+},
+{
+  num:17.2,
+  lat:12,
+  lon:-86.2,
+  type:'ccm',
+  country:'Nicaragua'
+},
+{
+  num:23.6,      
+  lat:4.34, 
+  lon:-74,
+  type:'ER',
+  country:'Colombia'
+},
+{
+  num:14.6,
+  lat:4.34, 
+  lon:-74,
+  type:'ccm',
+  country:'Colombia'
+},
+{
+  num:15.7,
+  lat:-25.4,
+  lon:28.1,
+  type:'ccm',
+  country:'South Africa'
+},
+{
+  num:23.0,      
+  lat:-25.4,
+  lon:28.1,
+  type:'ER',
+  country:'South Africa'
+},
+{
+  num:15.4,
+  lat:9,
+  lon:-79.2,
+  type:'ccm',
+  country:'Panama'
+},
+{
+  num:20.8,      
+  lat:9,
+  lon:-79.2,
+  type:'ER',
+  country:'Panama'
+},
+{
+  num:23.0,      
+  lat:-36.3, 
+  lon:-60,
+  type:'ER',
+  country:'Argentina'
+},
+{
+  num:14.1,
+  lat:-36.3, 
+  lon:-60,
+  type:'ccm',
+  country:'Argentina'
+},
+{
+  num:22.7,      
+  lat:-33.2,
+  lon:-70.4,
+  type:'ER',
+  country:'Chile'
+},
+{
+  num:14.1,
+  lat:-33.2,
+  lon:-70.4,
+  type:'ccm',
+  country:'Chile'
+},
+{
+  num:22.3,      
+  lat:23, 
+  lon:120,
+  type:'ER',
+  country:'Taiwan'
+},
+{
+  num:10.4,
+  lat:23,
+  lon:120,
+  type:'ccm',
+  country:'Taiwan'
+},
+{
+  num:14.2,
+  lat:-34.5,
+  lon:-56.1,
+  type:'ccm',
+  country:'Uruguay'
+},
+{
+  num:20.3,      
+  lat:-34.5,
+  lon:-56.1,
+  type:'ER',
+  country:'Uruguay'
+},
+{
+  num:21.1,      
+  lat:39.55, 
+  lon:116.20,
+  type:'ER',
+  country:'China'
+},
+{
+  num:5.7,
+  lat:39.55,
+  lon:116.20,
+  type:'ccm',
+  country:'China'
+},
+{
+  num:13.5,
+  lat:25,
+  lon:-77.2,
+  type:'ccm',
+  country:'Bahamas,The'
+},
+{
+  num:13.1,
+  lat:35.1,
+  lon:33.2,
+  type:'ccm',
+  country:'Cyprus'
+},
+{
+  num:18.1,      
+  lat:35.1, 
+  lon:33.2,
+  type:'ER',
+  country:'Cyprus'
+},
+{
+  num:20.8,      
+  lat:45.5, 
+  lon:15.5,
+  type:'ER',
+  country:'Croatia'
+},
+{
+  num:9.8,
+  lat:45.5,
+  lon:15.5,
+  type:'ccm',
+  country:'Croatia'
+},
+{
+  num:12.9,
+  lat:10.3,
+  lon:-61.2,
+  type:'ccm',
+  country:'Trinidad and Tobago'
+},
+{
+  num:18.5,      
+  lat:10.3,
+  lon:-61.2,
+  type:'ER',
+  country:'Trinidad and Tobago'
+},
+{
+  num:20.5,      
+  lat:38.4, 
+  lon:-9.1,
+  type:'ER',
+  country:'Portugal'
+},
+{
+  num:7.7,
+  lat:38.4, 
+  lon:-9.1,
+  type:'ccm',
+  country:'Portugal'
+},
+{
+  num:20.5,      
+  lat:56.5, 
+  lon:24,
+  type:'ER',
+  country:'Latvia'
+},
+{
+  num:6.1,
+  lat:56.5,
+  lon:24,
+  type:'ccm',
+  country:'Latvia'
+},
+{
+  num:11.6,
+  lat:9.5,
+  lon:-84,
+  type:'ccm',
+  country:'Costa Rica'
+},
+{
+  num:17.0,      
+  lat:9.5,
+  lon:-84,
+  type:'ER',
+  country:'Costa Rica'
+},
+{
+  num:19.9,      
+  lat:54.3, 
+  lon:25.1,
+  type:'ER',
+  country:'Lithuania'
+},
+{
+  num:7.9,
+  lat:54.3,
+  lon:25.1,
+  type:'ccm',
+  country:'Lithuania'
+},
+{
+  num:19.7,      
+  lat:52.1, 
+  lon:21,
+  type:'ER',
+  country:'Poland'
+},
+{
+  num:8.5,
+  lat:52.1,
+  lon:21,
+  type:'ccm',
+  country:'Poland'
+},
+{
+  num:11.1,
+  lat:18.2,
+  lon:-66,
+  type:'ccm',
+  country:'Puerto Rico'
+},
+{
+  num:19.6,      
+  lat:18.2,
+  lon:-66,
+  type:'ER',
+  country:'Puerto Rico'
+},
+{
+  num:19.4,      
+  lat:122, 
+  lon:103.4,
+  type:'ER',
+  country:'Singapore'
+},
+{
+  num:8.7,
+  lat:122,
+  lon:103.4,
+  type:'ccm',
+  country:'Singapore'
+},
+{
+  num:10.8,
+  lat:114.1,
+  lon:22.2,
+  type:'ccm',
+  country:'Macao SAR'
+},
+{
+  num:19.3,      
+  lat:40.2, 
+  lon:-3.4,
+  type:'ER',
+  country:'Spain'
+},
+{
+  num:10.5,
+  lat:40.2, 
+  lon:-3.4,
+  type:'ccm',
+  country:'Spain'
+},
+{
+  num:19.2,      
+  lat:47.2, 
+  lon:19.05,
+  type:'ER',
+  country:'Hungary'
+},
+{
+  num:7.1,
+  lat:47.2,
+  lon:19.05,
+  type:'ccm',
+  country:'Hungary'
+},
+{
+  num:10.8,
+  lat:-21,
+  lon:56,
+  type:'ccm',
+  country:'Réunion'
+},
+{
+  num:18.5,      
+  lat:-21,
+  lon:56,
+  type:'ER',
+  country:'Réunion'
+},
+{
+  num:18.8,      
+  lat:41.5, 
+  lon:12.2,
+  type:'ER',
+  country:'Italy'
+},
+{
+  num:8.2,
+  lat:41.5,
+  lon:12.2,
+  type:'ccm',
+  country:'Italy'
+},
+{
+  num:10.8,
+  lat:16,
+  lon:-61.4,
+  type:'ccm',
+  country:'Guadeloupe'
+},
+{
+  num:18.7,      
+  lat:37.5, 
+  lon:23.4,
+  type:'ER',
+  country:'Greece'
+},
+{
+  num:10.0,
+  lat:37.5,
+  lon:23.4,
+  type:'ccm',
+  country:'Greece'
+},
+{
+  num:17.9,      
+  lat:59.2, 
+  lon:24.4,
+  type:'ER',
+  country:'Estonia'
+},
+{
+  num:5.1,
+  lat:59.2,
+  lon:24.4,
+  type:'ccm',
+  country:'Estonia'
+},
+{
+  num:17.0,      
+  lat:22.1, 
+  lon:114,
+  type:'ER',
+  country:'Hong Kong SAR'
+},
+{
+  num:8.5,
+  lat:22.1, 
+  lon:114,
+  type:'ccm',
+  country:'Hong Kong SAR'
+},
+{
+  num:9.2,
+  lat:14.3,
+  lon:-61,
+  type:'ccm',
+  country:'Martinique'
+},
+{
+  num:16.5,      
+  lat:46, 
+  lon:14.3,
+  type:'ER',
+  country:'Slovenia'
+},
+{
+  num:6.2,
+  lat:46,
+  lon:14.3,
+  type:'ccm',
+  country:'Slovenia'
+},
+{
+  num:8.6,
+  lat:35.5,
+  lon:14.3,
+  type:'ccm',
+  country:'Malta'
+},
+{
+  num:16.2,      
+  lat:35.5,
+  lon:14.3,
+  type:'ER',
+  country:'Malta'
+},
+
+{
+  num:15.8,      
+  lat:37.3, 
+  lon:126.5,
+  type:'ER',
+  country:'Korea'
+},
+{
+  num:8.4,
+  lat:37.3, 
+  lon:126.5,
+  type:'ccm',
+  country:'Korea'
+},
+{
+  num:15.7,      
+  lat:48.1, 
+  lon:17,
+  type:'ER',
+  country:'Slovakia'
+},
+{
+  num:8.3,
+  lat:48.1, 
+  lon:17,
+  type:'ccm',
+  country:'Slovakia'
+},
+{
+  num:15.3,      
+  lat:48.5, 
+  lon:2.2,
+  type:'ER',
+  country:'France'
+},
+{
+  num:6.1,
+  lat:48.5,
+  lon:2.2,
+  type:'ccm',
+  country:'France'
+},
+{
+  num:15.2,      
+  lat:50,
+  lon:14.2,
+  type:'ER',
+  country:'Czech Republic'
+},
+{
+  num:6.1,
+  lat:50,
+  lon:14.2,
+  type:'ccm',
+  country:'Czech Republic'
+},
+{
+  num:13.9,      
+  lat:49.3, 
+  lon:6.09,
+  type:'ER',
+  country:'Luxembourg'
+},
+{
+  num:5.6,
+  lat:49.3,
+  lon:6.09,
+  type:'ccm',
+  country:'Luxembourg'
+},
+{
+  num:13.5,      
+  lat:50.5, 
+  lon:4.2,
+  type:'ER',
+  country:'Belgium'
+},
+{
+  num:6.3,
+  lat:50.5,
+  lon:4.2,
+  type:'ccm',
+  country:'Belgium'
+},
+{
+  num:13.5,      
+  lat:42.19, 
+  lon:82.56,
+  type:'ER',
+  country:'Canada'
+},
+{
+  num:5.3,
+  lat:42.19, 
+  lon:82.56,
+  type:'ccm',
+  country:'Canada'
+},
+{
+  num:13.0,      
+  lat:52.3, 
+  lon:13.2,
+  type:'ER',
+  country:'Germany'
+},
+{
+  num:3.5,
+  lat:52.3,
+  lon:13.2,
+  type:'ccm',
+  country:'Germany'
+},
+{
+  num:6.8,
+  lat:53.2,
+  lon:-6.1,
+  type:'ccm',
+  country:'Ireland'
+},
+{
+  num:11.6,      
+  lat:53.2,
+  lon:-6.1,
+  type:'ER',
+  country:'Ireland'
+},
+{
+  num:13.0,      
+  lat:52.2, 
+  lon:4.5,
+  type:'ER',
+  country:'Netherlands'
+},
+{
+  num:3.9,
+  lat:52.2,
+  lon:4.5,
+  type:'ccm',
+  country:'Netherlands'
+},
+{
+  num:13.0,      
+  lat:-37.49, 
+  lon:144.58,
+  type:'ER',
+  country:'Australia'
+},
+{
+  num:5.7,
+  lat:-37.49, 
+  lon:144.58,
+  type:'ccm',
+  country:'Australia'
+},
+{
+  num:12.9,      
+  lat:46.5, 
+  lon:7.2,
+  type:'ER',
+  country:'Switzerland'
+},
+{
+  num:4.6,
+  lat:46.5,
+  lon:7.2,
+  type:'ccm',
+  country:'Switzerland'
+},
+{
+  num:12.6,      
+  lat:64.1,
+  lon:-21.5,
+  type:'ER',
+  country:'Iceland'
+},
+{
+  num:4.1,
+  lat:64.1,
+  lon:-21.5,
+  type:'ccm',
+  country:'Iceland'
+},
+{
+  num:12.2,      
+  lat:48.1, 
+  lon:16.2,
+  type:'ER',
+  country:'Austria'
+},
+{
+  num:4.4,
+  lat:48.1,
+  lon:16.2,
+  type:'ccm',
+  country:'Austria'
+},
+{
+  num:12.0,      
+  lat:40.43, 
+  lon:-74,
+  type:'ER',
+  country:'United States'
+},
+{
+  num:4.7,
+  lat:40.43, 
+  lon:-74,
+  type:'ccm',
+  country:'United States'
+},
+{
+  num:11.8,      
+  lat:-41.1, 
+  lon:174.4,
+  type:'ER',
+  country:'New Zealand'
+},
+{
+  num:5.8,
+  lat:-41.1, 
+  lon:174.4,
+  type:'ccm',
+  country:'New Zealand'
+},
+{
+  num:11.5,      
+  lat:51.3, 
+  lon:-0.05,
+  type:'ER',
+  country:'United Kingdom'
+},
+{
+  num:4.8,
+  lat:51.3, 
+  lon:-0.05,
+  type:'ccm',
+  country:'United Kingdom'
+},
+
+{
+  num:10.3,      
+  lat:59.2, 
+  lon:18,
+  type:'ER',
+  country:'Sweden'
+},
+{
+  num:3.7,
+  lat:59.2,
+  lon:18,
+  type:'ccm',
+  country:'Sweden'
+},
+{
+  num:10.0,      
+  lat:55.4, 
+  lon:12.3,
+  type:'ER',
+  country:'Denmark'
+},
+{
+  num:3.2,
+  lat:55.4,
+  lon:12.3,
+  type:'ccm',
+  country:'Denmark'
+},
+{
+  num:10.0,      
+  lat:59.5, 
+  lon:10.4,
+  type:'ER',
+  country:'Norway'
+},
+{
+  num:3.3,
+  lat:59.5,
+  lon:10.4,
+  type:'ccm',
+  country:'Norway'
+},
+{
+  num:7.9,      
+  lat:60.1, 
+  lon:25,
+  type:'ER',
+  country:'Finland'
+},
+{
+  num:2.2,
+  lat:60.1,
+  lon:25,
+  type:'ccm',
+  country:'Finland'
+},
+{
+  num:6.6,      
+  lat:35.6, 
+  lon:139.7,
+  type:'ER',
+  country:'Japan'
+},
+{
+  num:2.5,
+  lat:35.6,
+  lon:139.7,
+  type:'ccm',
+  country:'Japan'
+},
+];

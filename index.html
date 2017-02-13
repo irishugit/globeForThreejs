@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <style type="text/css">
+      *{
+        padding: 0;
+        margin:0;
+        list-style: none;
+      }
+      html,body{
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        font-family:  "Microsoft Yahei UI" !important;
+        overflow: hidden;
+      }
+      #globe,#video{
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      #title{
+        position: absolute;
+        top:15px;
+      }
+    .toolItems{
+        position: absolute;
+        top: 150px;
+    }
+    .toolItem{
+        width: auto;
+        max-height: 20px;
+        margin-top: 10px;
+        background-color: rgba(88,88,88,0.7);
+        cursor: pointer;
+        padding: 8px;
+        transition: all 1s;
+        overflow: hidden;
+    }
+    .toolItem .toolColor{
+        width: 15px;
+        height: 15px;
+        margin-right: 8px;
+        display: inline-block;
+    }
+    .toolItem .toolText{
+        color: white;
+        /*font-size: 25px;*/
+        border-left:8px solid grey;
+        padding-left: 8px;
+    }
+    .bubble_footer{
+        position: absolute;
+        bottom: 15px;
+    }
+    #globe{
+        z-index:1;
+    }
+    #title,.toolItems,.bubble_footer{
+        z-index:2;
+        left:10px;
+    }
+
+    #ccm.active .toolText{
+        border-color: #F96A9C;
+    }
+    #er.active .toolText{
+        border-color: #FC8D41;
+    }
+    #china1.active .toolText{
+        border-color: #f80936;
+    }
+    #china2.active .toolText{
+        border-color: #920783;
+    }
+    .toolItem .toolItemContent{
+        margin-top: 8px;
+        margin-left: 8px;
+        transform-origin: 0 0;
+    }
+   /* .toolItem.active .toolItemContent{
+        animation: scalein 1.5s;
+    }*/
+    .toolItem .toolItemContent li{
+        opacity: 0;
+        animation: translateout 1.5s forwards;
+    }
+    .toolItem.active .toolItemContent li{
+        animation: translatein 1.5s forwards;
+    }
+    .toolItem.active .toolItemContent li:nth-child(2){
+        animation-delay: 0.2s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(3){
+        animation-delay: 0.4s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(4){
+        animation-delay: 0.5s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(5){
+        animation-delay: 0.6s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(6){
+        animation-delay: 0.7s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(7){
+        animation-delay: 0.8s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(8){
+        animation-delay: 0.9s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(9){
+        animation-delay: 1s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(10){
+        animation-delay: 1.1s; 
+    }
+    .toolItem.active .toolItemContent li:nth-child(11){
+        animation-delay: 1.2s; 
+    }
+    .toolItem.active{
+        max-height: 250px;
+    }
+    @keyframes scalein{
+        0%{
+            transform: scale(0.7,0);
+            opacity: 0;
+        }
+        100%{
+            transform: scale(1,1);
+            opacity: 1;
+        }
+    }
+    @keyframes translatein{
+        0%{
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+        100%{
+            transform: translateX(0%);
+            opacity: 1;
+        }
+    }
+    @keyframes translateout{
+        0%{
+            transform: translateX(0%);
+            opacity: 1;
+        }
+        100%{
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+    }
+   
+  </style>
+</head>
+
+<body>
+    <div class="bubble_child" id="video">
+        <div id="title">
+             <h3>恶意程序感染热力图<br/>Malware Infection Heatmap</h3>
+        </div>
+
+        <div class="toolItems">
+            <div class="toolItem" id="ccm">
+                <!-- <span class="toolColor" style="background-color: #b40091;"></span> -->
+                <span class="toolText">Computer Cleaned per Mille</span>
+                <ul class="toolItemContent">
+                    <li><span class="toolColor" style="background-color: #EEEEEE;"></span>No Data</li>
+                    <li><span class="toolColor" style="background-color: #F8D7E2;"></span>0 - 10</li>
+                    <li><span class="toolColor" style="background-color: #F8BACF;"></span>10 - 20</li>
+                    <li><span class="toolColor" style="background-color: #F996B8;"></span>20 - 30</li>
+                    <li><span class="toolColor" style="background-color: #F990B4;"></span>30 - 40</li>
+                    <li><span class="toolColor" style="background-color: #F96A9C;"></span>40 - 50</li>
+                    <li><span class="toolColor" style="background-color: #F94F8A;"></span>50 - 60</li>
+                    <li><span class="toolColor" style="background-color: #F93A7C;"></span>60 - 70</li>
+                    <li><span class="toolColor" style="background-color: #FA0258;"></span>70 - 80</li>
+                </ul>
+            </div>
+            <div class="toolItem" id="er">
+                <!-- <span class="toolColor" style="background-color: #0078d7;"></span> -->
+                <span class="toolText">Encouter Rate</span>
+                <ul class="toolItemContent">
+                    <li><span class="toolColor" style="background-color: #EEEEEE;"></span>No Data</li>
+                    <li><span class="toolColor" style="background-color: #FAD2B7;"></span>0% - 15%</li>
+                    <li><span class="toolColor" style="background-color: #FBBE94;"></span>15% - 20%</li>
+                    <li><span class="toolColor" style="background-color: #FCA263;"></span>20% - 25%</li>
+                    <li><span class="toolColor" style="background-color: #FC8D41;"></span>25% - 30%</li>
+                    <li><span class="toolColor" style="background-color: #FD8635;"></span>30% - 35%</li>
+                    <li><span class="toolColor" style="background-color: #FD7516;"></span>35% - 40%</li>
+                    <li><span class="toolColor" style="background-color: #FE6A03;"></span>40% - 50%</li>
+                </ul>
+            </div>
+            <div class="toolItem" id="china1">
+                <span class="toolText">木马或僵尸程序控制服务器IP地址数量</span>
+                <ul class="toolItemContent">
+                    <li><span class="toolColor" style="background-color: #E60012;"></span>广东 29.9%</li>
+                    <li><span class="toolColor" style="background-color: #F2616C;"></span>江苏 9.3%</li>
+                    <li><span class="toolColor" style="background-color: #F46A75;"></span>北京 7.4%</li>
+                    <li><span class="toolColor" style="background-color: #F4717B;"></span>浙江 5.9%</li>
+                    <li><span class="toolColor" style="background-color: #F57882;"></span>云南 4.4%</li>
+                    <li><span class="toolColor" style="background-color: #F67B84;"></span>河南 3.9%</li>
+                    <li><span class="toolColor" style="background-color: #F67C85;"></span>福建 3.7%</li>
+                    <li><span class="toolColor" style="background-color: #F67D87;"></span>山东 3.3%</li>
+                    <li><span class="toolColor" style="background-color: #F67E87;"></span>河北 3.1%</li>
+                    <li><span class="toolColor" style="background-color: #F6818A;"></span>湖南 2.6%</li>
+                    <li><span class="toolColor" style="background-color: #F9DADC;"></span>其他 26.5%</li>
+                </ul>
+            </div>
+            <div class="toolItem" id="china2">
+                <span class="toolText">木马或僵尸程序受控主机IP地址数量</span>
+                <ul class="toolItemContent">
+                    <li><span class="toolColor" style="background-color: #AD0C9B;"></span>广东 14.4%</li>
+                    <li><span class="toolColor" style="background-color: #C752BA;"></span>江苏 8.5%</li>
+                    <li><span class="toolColor" style="background-color: #C958BC;"></span>山东 8.0%</li>
+                    <li><span class="toolColor" style="background-color: #CD64C2;"></span>浙江 7.0%</li>
+                    <li><span class="toolColor" style="background-color: #CF6AC4;"></span>辽宁 6.5%</li>
+                    <li><span class="toolColor" style="background-color: #D67CCC;"></span>河北 5.0%</li>
+                    <li><span class="toolColor" style="background-color: #D67CCC;"></span>河南 5.0%</li>
+                    <li><span class="toolColor" style="background-color: #DC8BD3;"></span>湖南 3.7%</li>
+                    <li><span class="toolColor" style="background-color: #DD8DD4;"></span>湖北 3.5%</li>
+                    <li><span class="toolColor" style="background-color: #DF95D7;"></span>福建 2.9%</li>
+                    <li><span class="toolColor" style="background-color: #FAD2F6;"></span>其他 35.5%</li>
+                </ul>
+            </div>
+        </div>
+            
+        <div id="globe"></div>
+        
+        <p class="bubble_footer" style="margin-top: 20px;">Source: Microsft Security Intelligence Report 2016Q2, 2015年 中国互联网网络安全报告</p>
+        
+
+    </div>
+    
+    
+
+		
+
+    <script src="./lib/jquery-3.1.1.min.js"></script>
+
+    <!-- botnet globe部分 -->
+    <script src="./lib/globe.js"></script>
+    <script src="./lib/three.min.js"></script>
+    <script src="./js/globe_botnet.js"></script>
+    <!-- botnet globe部分结束 -->
+
+    <script type="text/javascript">
+        
+        var globeO = _globe(document.getElementById('globe'));
+        globeO.move();
+
+        var toolItems = $('.toolItem');
+
+        $(toolItems.get(0)).addClass('active');
+
+        toolItems.on('click',function(e){
+
+            var target = $(e.currentTarget);
+
+            globeO.changeMap(target.attr('id'));
+
+            toolItems.removeClass('active');
+            target.addClass('active');
+
+        });
+
+    </script>
+</body>
+</html>
