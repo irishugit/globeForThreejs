@@ -1,0 +1,2 @@
+# globeForThreejs
+基于threejs开发的地球形式展示数据
